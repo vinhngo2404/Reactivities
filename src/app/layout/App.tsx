@@ -133,12 +133,24 @@ const data = [
 function App() {
   const [activities, setActivities] = useState(data);
 
+  const handleCreateActivity = (activity) => {
+    setActivities([activity,...activities]);
+  };
+
+  const handleDeleteActivity = (id) => {
+    setActivities(activities.filter(activity => activity.id !== id));
+  };
+
   return (
     <>
       <CssBaseline />
       <NavBar openForm={() => {}} />
       <Container maxWidth="xl" sx={{ mt: 3 }}>
-        <ActivityDashboard activities={activities} />
+        <ActivityDashboard 
+        activities={activities} 
+        onCreateActivity={handleCreateActivity}
+        onDeleteActivity={handleDeleteActivity}
+        />
       </Container>
     </>
   );

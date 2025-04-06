@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 
 type Activity = {
+  id: string;
   title: string;
   date: Date;
   description: string;
@@ -19,9 +20,10 @@ type Activity = {
 
 type Props = {
   activity: Activity;
+  onDeleteActivity: (id: string) => void;
 };
 
-export default function ActivityCard({ activity }: Props) {
+export default function ActivityCard({ activity, onDeleteActivity }: Props) {
   return (
     <Card sx={{ borderRadius: 3 }}>
       <CardContent>
@@ -42,7 +44,10 @@ export default function ActivityCard({ activity }: Props) {
           <Button size="medium" variant="contained">
             View
           </Button>
-          <Button color="error" size="medium" variant="contained">
+          <Button 
+          color="error" size="medium" variant="contained"
+          onClick={() => onDeleteActivity(activity.id)}
+          >
             Delete
           </Button>
         </Box>
